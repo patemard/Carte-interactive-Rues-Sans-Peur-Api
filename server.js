@@ -1,5 +1,5 @@
 
-const db = require("./models");
+const db = require("./Models");
 
 var createError = require('http-errors');
  var express = require('express');
@@ -8,10 +8,16 @@ var createError = require('http-errors');
  var bodyParser = require('body-parser');
  
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "http://localhost:4200"
 };
 
-db.sequelize.sync();
+db.sequelize.sync()
+.then(() => {
+  console.log('Tag table created!');
+})
+.catch(err => {
+  console.error('Error creating Tag table: ', err);
+});
  
 const tagRoute = require('./routes/tag.routes.')
  
@@ -49,7 +55,7 @@ app.get('/', (req, res) => {
 });
  
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'MapApp/app/index.html'));
+  res.sendFile(path.join(__dirname, 'MapApp/src/app/index.html'));
 });
  
 // error handler

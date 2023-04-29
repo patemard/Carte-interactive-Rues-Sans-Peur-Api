@@ -2,24 +2,33 @@ const express = require('express');
 const app = express();
 
 const tagRoute = express.Router();
-let tag = require('../models/tag');
+let Tag = require('../Models/tag');
 
 //https://www.tutsmake.com/angular-12-crud-node-js-express-mysql-tutorial/
 
-// Add tag
+// Add Tag
 tagRoute.route('/add-tag').post((req, res, next) => {
-   tag.create(req.body, (error, data) => {
-    if (error) {
-      return next(error)
-    } else {
-      res.json(data)
-    }
+  Tag.create({
+    title: req.body.title, 
+    text: req.body.description,
+    longitude: req.body.coord.longitude,
+    latitude: req.body.coord.latitude
+   })
+  .then((tag) => {
+    console.log('tag created:', tag.toJSON());
+    res.json(tag)
+
   })
+  .catch((error) => {
+    console.error('Error creating tag:', error);
+    return next(error)
+  });
+
 });
  
-// Get all tag
+// Get all Tag
 tagRoute.route('/').get((req, res) => {
-    tag.find((error, data) => {
+    Tag.find((error, data) => {
     if (error) {
       return next(error)
     } else {
@@ -28,9 +37,9 @@ tagRoute.route('/').get((req, res) => {
   })
 })
 
-// Get tag
+// Get Tag
 tagRoute.route('/read-tag/:id').get((req, res) => {
-    tag.findById(req.params.id, (error, data) => {
+    Tag.findById(req.params.id, (error, data) => {
     if (error) {
       return next(error)
     } else {
@@ -40,9 +49,9 @@ tagRoute.route('/read-tag/:id').get((req, res) => {
 })
 
 
-// Update tag
+// Update Tag
 tagRoute.route('/update-tag/:id').put((req, res, next) => {
-    tag.findByIdAndUpdate(req.params.id, {
+    Tag.findByIdAndUpdate(req.params.id, {
     $set: req.body
   }, (error, data) => {
     if (error) {
@@ -50,14 +59,14 @@ tagRoute.route('/update-tag/:id').put((req, res, next) => {
       console.log(error)
     } else {
       res.json(data)
-      console.log('tag updated successfully!')
+      console.log('Tag updated successfully!')
     }
   })
 })
 
-// Delete tag
+// Delete Tag
 tagRoute.route('/delete-tag/:id').delete((req, res, next) => {
-    tag.findByIdAndRemove(req.params.id, (error, data) => {
+    Tag.findByIdAndRemove(req.params.id, (error, data) => {
     if (error) {
       return next(error);
     } else {

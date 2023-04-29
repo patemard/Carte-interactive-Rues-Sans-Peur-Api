@@ -1,5 +1,11 @@
+
 module.exports = (sequelize, Sequelize) => {
-     const Tag = sequelize.define("tag", {
+     const Tag = sequelize.define("Tag", {
+        id: {
+            type: Sequelize.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
+        },
         title: {
             type: Sequelize.STRING
         },
@@ -14,5 +20,5 @@ module.exports = (sequelize, Sequelize) => {
         }
      });
     
-      return Tag;
-    };
+   module.exports = Tag;
+};
