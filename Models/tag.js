@@ -17,6 +17,12 @@ module.exports = (sequelize, Sequelize) => {
         },
         latitude: {
             type: Sequelize.STRING
+        },
+        genre: {
+            type: Sequelize.STRING
+        },
+        transport: {
+            type: Sequelize.STRING
         }
      });
     
