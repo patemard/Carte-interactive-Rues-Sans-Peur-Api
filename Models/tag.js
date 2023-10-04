@@ -18,7 +18,7 @@ module.exports = (sequelize, Sequelize) => {
         latitude: {
             type: Sequelize.STRING
         },
-        genre: {
+        emotion: {
             type: Sequelize.STRING
         },
         transport: {
