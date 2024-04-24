@@ -11,10 +11,11 @@ tagRoute.route('/add-tag').post((req, res, next) => {
   Tag.create({
     title: req.body.title, 
     text: req.body.description,
-    longitude: req.body.coordinates.longitude,
-    latitude: req.body.coordinates.latitude,
+    longitude: req.body.longitude,
+    latitude: req.body.latitude,
     emotion: req.body.emotion,
     transport: req.body.transport
+    
    })
   .then((tag) => {
     console.log('tag created:', tag.toJSON());
