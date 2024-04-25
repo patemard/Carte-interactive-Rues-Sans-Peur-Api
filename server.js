@@ -38,7 +38,7 @@ app.use(express.static(path.join(__dirname, 'MapApp/app/index.html')));
 app.use('/api', tagRoute)
  
 // PORT
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 10000;
  
 app.listen(port, () => {
   console.log('Listening on port ' + port)
