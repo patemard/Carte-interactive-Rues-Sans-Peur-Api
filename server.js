@@ -6,10 +6,12 @@ var createError = require('http-errors');
  var path = require('path');
  var cors = require("cors");
  var bodyParser = require('body-parser');
- 
-var corsOptions = {
-  origin: "https://localhost:4200"
-};
+
+ const allowedOrigins = ['https://localhost:4200', 'https://mapapp-edlw.onrender.com'];
+
+// var corsOptions = {
+//   origin: "https://localhost:4200"
+// };
 
 db.sequelize.sync()
 .then(() => {
@@ -22,14 +24,23 @@ db.sequelize.sync()
 const tagRoute = require('./routes/tag.routes.')
  
 const app = express();
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
-app.use(cors());
- 
+
+app.use(cors({
+  origin: function (origin, callback) {
+      // Check if the request origin is in the allowedOrigins array
+      if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+      } else {
+          callback(new Error('Not allowed by CORS'));
+      }
+  }
+}));
 // Static directory path
 app.use(express.static(path.join(__dirname, 'MapApp/app/index.html')));
  
