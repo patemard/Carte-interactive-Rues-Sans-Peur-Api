@@ -8,7 +8,9 @@ var createError = require('http-errors');
  var bodyParser = require('body-parser');
  
 var corsOptions = {
-  origin: "http://localhost:4200"
+  // origin: "http://localhost:4200"
+  origin: "https://mapapp-edlw.onrender.com"
+
 };
 
 db.sequelize.sync()
@@ -38,7 +40,7 @@ app.use(express.static(path.join(__dirname, 'MapApp/app/index.html')));
 app.use('/api', tagRoute)
  
 // PORT
-const port = process.env.PORT || 10000;
+const port = process.env.PORT || 1000;
  
 app.listen(port, () => {
   console.log('Listening on port ' + port)
