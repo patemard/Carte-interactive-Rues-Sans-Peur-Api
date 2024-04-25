@@ -8,7 +8,7 @@ var createError = require('http-errors');
  var bodyParser = require('body-parser');
  
 var corsOptions = {
-  origin: "https://mapapp-edlw.onrender.com",
+  origin: "http://localhost:4200",
   methods: ["GET","HEAD","PUT","PATCH","POST","DELETE"],
   header: "content-type"
 };
