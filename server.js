@@ -8,7 +8,7 @@ var createError = require('http-errors');
  var bodyParser = require('body-parser');
  
 var corsOptions = {
-  origin: "http://localhost:10000"
+  origin: "https://mapapp-edlw.onrender.com"
 };
 
 db.sequelize.sync()
