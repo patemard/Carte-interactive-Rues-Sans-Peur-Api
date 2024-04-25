@@ -8,9 +8,7 @@ var createError = require('http-errors');
  var bodyParser = require('body-parser');
  
 var corsOptions = {
-  origin: "http://localhost:10000",
-  methods: ["GET","HEAD","PUT","PATCH","POST","DELETE"],
-  header: "content-type"
+  origin: "http://localhost:10000"
 };
 
 db.sequelize.sync()
