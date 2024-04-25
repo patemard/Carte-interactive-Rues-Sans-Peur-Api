@@ -8,7 +8,7 @@ var createError = require('http-errors');
  var bodyParser = require('body-parser');
  
 var corsOptions = {
-  origin: "http://localhost:4200",
+  origin: "http://localhost:10000",
   methods: ["GET","HEAD","PUT","PATCH","POST","DELETE"],
   header: "content-type"
 };
