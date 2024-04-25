@@ -1,8 +1,8 @@
 module.exports = {
-    HOST: "hjz.h.filess.io",
-    USER: "mapdb_centthough",
-    PASSWORD: "c1add8fe12fbe32c45cdf6fe972c6092400d74c0",
-    DB: "mapdb_centthough",
+    HOST: "bkvkf4cbexisrgelywhx-mysql.services.clever-cloud.com",
+    USER: "ublbvpqpechbjwbz",
+    PASSWORD: "jaIo1UofAtX4U1rTQ0SY",
+    DB: "bkvkf4cbexisrgelywhx",
     dialect: "mysql",
     pool: {
         max: 5,
