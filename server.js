@@ -7,7 +7,7 @@ var createError = require('http-errors');
  var cors = require("cors");
  var bodyParser = require('body-parser');
 
- const allowedOrigins = ['https://localhost:4200', 'https://mapapp-edlw.onrender.com'];
+ const allowedOrigins = ['https://localhost:4200','http://localhost:4200', 'https://mapapp-edlw.onrender.com'];
 
 // var corsOptions = {
 //   origin: "https://localhost:4200"
