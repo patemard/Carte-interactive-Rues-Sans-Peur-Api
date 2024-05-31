@@ -8,14 +8,17 @@ let Tag = require('../Models/tag');
 
 // Add Tag
 tagRoute.route('/add-tag').post((req, res, next) => {
+    console.log(req.body)
   Tag.create({
     title: req.body.title, 
     text: req.body.description,
     longitude: req.body.longitude,
     latitude: req.body.latitude,
     emotion: req.body.emotion,
-    transport: req.body.transport
-    
+    transport: req.body.transport,
+    trajectory:  req.body.trajectory
+
+
    })
   .then((tag) => {
     console.log('tag created:', tag.toJSON());
@@ -45,7 +48,7 @@ tagRoute.route('/').get((req, res) => {
 // Get Tag
 tagRoute.route('/read-tag/:id').get((req, res, next) => {
     Tag.findById(req.params.id, (error, data) => {
-    if (error) {
+    if (error) {``
       return next(error)
     } else {
       res.json(data)
@@ -81,22 +84,5 @@ tagRoute.route('/delete-tag/:id').delete((req, res, next) => {
     }
   })
 })
-
-
-function mapToGeoJSON(tag) {
-  return {
-    "type": "Feature",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [tag.latitude, tag.longitude] 
-    },
-    "properties": {
-      "title": tag.title,
-      "description": tag.text,
-      "transport": tag.transport,
-      "emotion": tag.emotion
-    }
-  }
-}
 
 module.exports = tagRoute;

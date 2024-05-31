@@ -10,7 +10,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING
         },
         text: {
-            type: Sequelize.STRING
+            type: Sequelize.TEXT
         },
         longitude: {
             type: Sequelize.STRING
@@ -18,6 +18,9 @@ module.exports = (sequelize, Sequelize) => {
         latitude: {
             type: Sequelize.STRING
         },
+         trajectory: {
+             type: Sequelize.JSON
+         },
         emotion: {
             type: Sequelize.STRING
         },
