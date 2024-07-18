@@ -26,7 +26,10 @@ module.exports = (sequelize, Sequelize) => {
         },
         transport: {
             type: Sequelize.STRING
-        }
+        },
+        heart: {
+            type: Sequelize.INTEGER,
+          }
      });
     
    module.exports = Tag;
