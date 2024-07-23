@@ -28,7 +28,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING
         },
         heart: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.JSON,
           }
      });
     
