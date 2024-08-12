@@ -29,7 +29,10 @@ module.exports = (sequelize, Sequelize) => {
         },
         heart: {
             type: Sequelize.JSON,
-          }
+          },
+        flagged: {
+            type: Sequelize.JSON,
+        }
      });
     
    module.exports = Tag;
