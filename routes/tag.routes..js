@@ -16,7 +16,8 @@ tagRoute.route('/add-tag').post((req, res, next) => {
     latitude: req.body.latitude,
     emotion: req.body.emotion,
     transport: req.body.transport,
-    trajectory:  req.body.trajectory
+    trajectory:  req.body.trajectory,
+    active: req.body.active
 
    })
   .then((tag) => {

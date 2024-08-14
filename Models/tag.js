@@ -6,6 +6,9 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: true,
             autoIncrement: true
         },
+        active: {
+            type: Sequelize.BOOLEAN
+        },
         title: {
             type: Sequelize.STRING
         },
