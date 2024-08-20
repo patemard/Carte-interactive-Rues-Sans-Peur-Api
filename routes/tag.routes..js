@@ -6,6 +6,8 @@ let Tag = require('../Models/tag');
 
 //https://www.tutsmake.com/angular-12-crud-node-js-express-mysql-tutorial/
 
+//https://chatgpt.com/c/ac0ea6e0-be1e-4ebd-bef9-07655ff6b025
+
 // Add Tag
 tagRoute.route('/add-tag').post((req, res, next) => {
     console.log(req.body)
@@ -17,8 +19,8 @@ tagRoute.route('/add-tag').post((req, res, next) => {
     emotion: req.body.emotion,
     transport: req.body.transport,
     trajectory:  req.body.trajectory,
-    active: req.body.active
-
+    active: req.body.active,
+    identification: req.body.identification
    })
   .then((tag) => {
     console.log('tag created:', tag.toJSON());

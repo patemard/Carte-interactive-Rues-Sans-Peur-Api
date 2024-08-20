@@ -21,13 +21,16 @@ module.exports = (sequelize, Sequelize) => {
         latitude: {
             type: Sequelize.STRING
         },
-         trajectory: {
+        trajectory: {
              type: Sequelize.JSON
          },
         emotion: {
             type: Sequelize.STRING
         },
         transport: {
+            type: Sequelize.STRING
+        },        
+        identification: {
             type: Sequelize.STRING
         },
         heart: {
