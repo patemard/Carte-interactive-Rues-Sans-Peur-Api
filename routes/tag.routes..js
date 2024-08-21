@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 
 const tagRoute = express.Router();
+const nodemailer = require('nodemailer');
 let Tag = require('../Models/tag');
 
 //https://www.tutsmake.com/angular-12-crud-node-js-express-mysql-tutorial/
@@ -94,5 +95,32 @@ tagRoute.route('/delete-tag/:id').delete(async (req, res, next) =>  {
     return res.status(500).json({ message: 'Internal Server Error' });
   }
 });
+
+tagRoute.post('/send-email', (req, res) => {
+  const { from, to, subject, text } = req.body;
+
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'RuesSansPeur@gmail.com',
+      pass: 'tcvt sdcs aguy orez'
+    }
+  });
+
+  let mailOptions = {
+    from: from,
+    to: to,
+    subject: subject,
+    text: text
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return res.status(500).send(error.toString());
+    }
+    res.status(200).send('Email sent: ' + info.response);
+  });
+});
+
 
 module.exports = tagRoute;
