@@ -12,7 +12,7 @@ module.exports = (sequelize, Sequelize) => {
         title: {
             type: Sequelize.STRING
         },
-        text: {
+        description: {
             type: Sequelize.TEXT
         },
         longitude: {
@@ -20,6 +20,9 @@ module.exports = (sequelize, Sequelize) => {
         },
         latitude: {
             type: Sequelize.STRING
+        },
+        mercatorCoord: {
+            type: Sequelize.JSON
         },
         trajectory: {
              type: Sequelize.JSON

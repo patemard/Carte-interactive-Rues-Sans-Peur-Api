@@ -14,7 +14,8 @@ tagRoute.route('/add-tag').post((req, res, next) => {
     console.log(req.body)
   Tag.create({
     title: req.body.title, 
-    text: req.body.description,
+    mercatorCoord: req.body.mercatorCoord, 
+    description: req.body.description,
     longitude: req.body.longitude,
     latitude: req.body.latitude,
     emotion: req.body.emotion,
@@ -50,13 +51,15 @@ tagRoute.route('/').get((req, res) => {
 
 // Get Tag
 tagRoute.route('/read-tag/:id').get((req, res, next) => {
-    Tag.findById(req.params.id, (error, data) => {
-    if (error) {``
-      return next(error)
-    } else {
+    Tag.findByPk(req.params.id)
+    .then(data =>{
+      console.log(data);
       res.json(data)
-    }
-  })
+    })
+    .catch((error) => {
+      console.error('Error fetching tag:', error);
+      return next(error)
+    });
 })
 
 
