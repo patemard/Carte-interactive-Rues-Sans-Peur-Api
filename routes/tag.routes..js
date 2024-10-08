@@ -44,7 +44,7 @@ tagRoute.route('/').get((req, res) => {
       res.json(data)
     })
     .catch((error) => {
-      console.error('Error creating tag:', error);
+      console.error('Error fetching tag:', error);
       return next(error)
     });
   })
@@ -123,6 +123,18 @@ tagRoute.post('/send-email', (req, res) => {
     }
     res.status(200).send('Email sent: ' + info.response);
   });
+});
+
+
+
+
+tagRoute.get('/get-ip', async (req, res) => {
+  try {
+    const response = await axios.get('https://api.ipify.org?format=json');
+    res.json(response.data); // Send the data back to the client
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching IP' });
+  }
 });
 
 
