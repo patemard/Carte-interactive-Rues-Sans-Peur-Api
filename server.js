@@ -13,7 +13,7 @@ var createError = require('http-errors');
 //   origin: "https://localhost:4200"
 // };
 
-db.sequelize.sync()
+db.sequelize.sync({ force:true })
 .then(() => {
   console.log('Tag table created!');
 })
