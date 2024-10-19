@@ -8,7 +8,7 @@ var cors = require("cors");
 var bodyParser = require('body-parser');
 
  const allowedOrigins = ['https://localhost:4200','http://localhost:4200', 'http://localhost:10000','https://localhost:10000',
-  'https://mapapp-edlw.onrender.com',  'https://mapappbackend.onrender.com/api', "https://api.ipify.org"];
+  'https://mapapp-edlw.onrender.com',  'https://mapappbackend.onrender.com/api', "https://api.ipify.org/?format=json"];
 
 var corsOptions = {
     origin: function (origin, callback) {
