@@ -2,18 +2,26 @@
 const db = require("./Models");
 
 var createError = require('http-errors');
- var express = require('express');
- var path = require('path');
- var cors = require("cors");
- var bodyParser = require('body-parser');
+var express = require('express');
+var path = require('path');
+var cors = require("cors");
+var bodyParser = require('body-parser');
 
- const allowedOrigins = ['https://localhost:4200','http://localhost:4200', 'http://localhost:10000','https://mapapp-edlw.onrender.com'];
+ const allowedOrigins = ['https://localhost:4200','http://localhost:4200', 'http://localhost:10000','https://localhost:10000',
+  'https://mapapp-edlw.onrender.com',  'https://mapappbackend.onrender.com/api', "https://api.ipify.org"];
 
-// var corsOptions = {
-//   origin: "https://localhost:4200"
-// };
+var corsOptions = {
+    origin: function (origin, callback) {
+      // Check if the request origin is in the allowedOrigins array
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+    } else {
+        callback(new Error('Not allowed by CORS'));
+    }
+  }
+};
 
-db.sequelize.sync({ force:true })
+db.sequelize.sync({ force:false })
 .then(() => {
   console.log('Tag table created!');
 })
@@ -24,24 +32,13 @@ db.sequelize.sync({ force:true })
 const tagRoute = require('./routes/tag.routes.')
  
 const app = express();
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
 
-app.use(cors({
-  origin: function (origin, callback) {
-      // Check if the request origin is in the allowedOrigins array
-      if (!origin || allowedOrigins.includes(origin)) {
-          callback(null, true);
-      } else {
-          callback(new Error('Not allowed by CORS'));
-      }
-  }
-}));
-// Static directory path
 app.use(express.static(path.join(__dirname, 'MapApp/app/index.html')));
  
  
