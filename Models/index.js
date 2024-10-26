@@ -23,5 +23,7 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.tags= require("./tag.js")(sequelize, Sequelize);
+db.pass= require("./pass.js")(sequelize, Sequelize);
+
 
 module.exports = db;

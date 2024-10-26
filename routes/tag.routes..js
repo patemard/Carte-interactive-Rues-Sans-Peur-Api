@@ -4,6 +4,7 @@ const app = express();
 const tagRoute = express.Router();
 const nodemailer = require('nodemailer');
 let Tag = require('../Models/tag');
+let Pass = require('../Models/pass');
 
 //https://www.tutsmake.com/angular-12-crud-node-js-express-mysql-tutorial/
 
@@ -126,7 +127,18 @@ tagRoute.post('/send-email', (req, res) => {
 });
 
 
-
+tagRoute.get('/get-hash', (req, res) => {
+  
+  Pass.findAll()
+  .then(data =>{
+    console.log(data);
+    res.json(data)
+  })
+  .catch((error) => {
+    console.error('Error fetching tag:', error);
+    return next(error)
+  });
+})
 
 
 module.exports = tagRoute;
