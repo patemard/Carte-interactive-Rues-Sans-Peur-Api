@@ -20,7 +20,6 @@ var corsOptions = {
     }
   }
 };
-
 db.sequelize.sync({ force:false })
 .then(() => {
   console.log('Tag table created!');
