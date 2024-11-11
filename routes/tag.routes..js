@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const bcrypt = require('bcrypt');
 
 const tagRoute = express.Router();
 const nodemailer = require('nodemailer');
@@ -106,8 +107,8 @@ tagRoute.post('/send-email', (req, res) => {
   let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'RuesSansPeur@gmail.com',
-      pass: 'tcvt sdcs aguy orez'
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASSWORD
     }
   });
 
@@ -126,9 +127,7 @@ tagRoute.post('/send-email', (req, res) => {
   });
 });
 
-
 tagRoute.get('/get-hash', (req, res) => {
-  
   Pass.findAll()
   .then(data =>{
     console.log(data);
@@ -139,6 +138,34 @@ tagRoute.get('/get-hash', (req, res) => {
     return next(error)
   });
 })
+
+// Validating Password without userId
+tagRoute.post('/verify-password', async (req, res) => {
+  const { inputPassword } = req.body; // Only inputPassword is required
+
+  try {
+    // Fetch the hashed password from the database (assuming you have a single password record)
+    const passEntry = await Pass.findOne(); // Adjust the query as needed based on your requirements
+
+    if (!passEntry) {
+      return res.status(404).json({ message: 'No password record found' });
+    }
+
+    // Compare the input password with the hashed password
+    const match = await bcrypt.compare(inputPassword, passEntry.password_hash);
+
+    if (match) {
+      return res.status(200).json({ message: 'Password match' });
+    } else {
+      return res.status(401).json({ message: 'Invalid password' });
+    }
+  } catch (error) {
+    console.error('Error verifying password:', error);
+    return res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+
 
 
 module.exports = tagRoute;
