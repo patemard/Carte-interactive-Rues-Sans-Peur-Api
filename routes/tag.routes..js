@@ -7,13 +7,8 @@ const nodemailer = require('nodemailer');
 let Tag = require('../Models/tag');
 let Pass = require('../Models/pass');
 
-//https://www.tutsmake.com/angular-12-crud-node-js-express-mysql-tutorial/
-
-//https://chatgpt.com/c/ac0ea6e0-be1e-4ebd-bef9-07655ff6b025
-
 // Add Tag
 tagRoute.route('/add-tag').post((req, res, next) => {
-    console.log(req.body)
   Tag.create({
     title: req.body.title, 
     mercatorCoord: req.body.mercatorCoord, 
@@ -27,7 +22,6 @@ tagRoute.route('/add-tag').post((req, res, next) => {
     identification: req.body.identification
    })
   .then((tag) => {
-    console.log('tag created:', tag.toJSON());
     res.json(tag)
 
   })
@@ -42,7 +36,6 @@ tagRoute.route('/add-tag').post((req, res, next) => {
 tagRoute.route('/').get((req, res) => {
     Tag.findAll()
     .then(data =>{
-      console.log(data);
       res.json(data)
     })
     .catch((error) => {
@@ -55,7 +48,6 @@ tagRoute.route('/').get((req, res) => {
 tagRoute.route('/read-tag/:id').get((req, res, next) => {
     Tag.findByPk(req.params.id)
     .then(data =>{
-      console.log(data);
       res.json(data)
     })
     .catch((error) => {
@@ -130,7 +122,6 @@ tagRoute.post('/send-email', (req, res) => {
 tagRoute.get('/get-hash', (req, res) => {
   Pass.findAll()
   .then(data =>{
-    console.log(data);
     res.json(data)
   })
   .catch((error) => {
